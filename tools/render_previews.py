@@ -74,6 +74,8 @@ def render_one(
     n_frames: int = 120,
     fps: int = 30,
     sweep_fraction: float = 0.6,
+    front_azimuth: float = 90.0,
+    neutral: bool = False,
 ) -> None:
     if not mjcf_path.exists():
         print(f"[{name}] SKIP: {mjcf_path} not found")
@@ -101,19 +103,17 @@ def render_one(
     mujoco.mjv_defaultCamera(cam)
     cam.lookat[:] = [-0.012, 0.0, 0.09]
     cam.distance = 0.28
-    cam.elevation = -22.0
-    cam.azimuth = 90.0
+    cam.elevation = -15.0
+    cam.azimuth = front_azimuth
 
     scene_opt = mujoco.MjvOption()
     mujoco.mjv_defaultOption(scene_opt)
     # hide collision-only (group 0) geoms, show visual (group 1) only
     scene_opt.geomgroup[0] = 1
 
-    frames = []
-    for k in range(n_frames):
-        phase = 0.5 - 0.5 * np.cos(2 * np.pi * k / n_frames)  # [0, 1]
-        signed = 2 * phase - 1                                  # [-1, 1]
-
+    def _drive_joints(phase: float) -> None:
+        """Set every actuator master joint to center + sweep*phase, enforce mimic."""
+        signed = 2 * phase - 1  # [-1, 1]
         for aid in range(model.nu):
             jid = model.actuator(aid).trnid[0]
             lo, hi = model.actuator_ctrlrange[aid]
@@ -121,21 +121,50 @@ def render_one(
             half = 0.5 * sweep_fraction * (hi - lo)
             adr = model.jnt_qposadr[jid]
             data.qpos[adr] = center + half * signed
-
         _enforce_equality(model, data)
         mujoco.mj_forward(model, data)
 
-        cam.azimuth = 90.0 + 25.0 * np.sin(2 * np.pi * k / n_frames)
+    def _reset_joints() -> None:
+        """All joint positions = 0 (control = 0 / fully extended pose)."""
+        data.qpos[:] = 0.0
+        mujoco.mj_forward(model, data)
+
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    png_path = OUT_DIR / f"{name}.png"
+
+    if neutral:
+        # Neutral-pose PNG only, at the requested front azimuth.
+        _reset_joints()
+        cam.azimuth = front_azimuth
+        renderer.update_scene(data, camera=cam, scene_option=scene_opt)
+        imageio.imwrite(png_path, renderer.render())
+        print(f"  -> {png_path.relative_to(ROOT)}  (neutral pose, az={front_azimuth:.0f})")
+        return
+
+    # -------- GIF: azimuth oscillates front ± 90 deg (z-axis pan), joints flex --
+    # Camera follows a smooth sine wave so it loops perfectly: front -> +90 ->
+    # front -> -90 -> front per period. Joints also cycle once per period.
+    # If you want the GIF to cover the *opposite* hemisphere from the PNG, pass
+    # --front-azimuth 180 (relative to the PNG front).
+    frames = []
+    for k in range(n_frames):
+        phase = 0.5 - 0.5 * np.cos(2 * np.pi * k / n_frames)  # [0, 1]
+        _drive_joints(phase)
+        cam.azimuth = front_azimuth + 90.0 * np.sin(2 * np.pi * k / n_frames)
         renderer.update_scene(data, camera=cam, scene_option=scene_opt)
         frames.append(renderer.render())
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    gif_path = OUT_DIR / f"{name}.gif"
-    png_path = OUT_DIR / f"{name}.png"
+    # -------- PNG: fixed front view, neutral pose (all joints at zero) -------
+    # Using the canonical reference pose so the still is reproducible and
+    # matches the convention used by dex-urdf / yourdfpy.
+    _reset_joints()
+    cam.azimuth = front_azimuth
+    renderer.update_scene(data, camera=cam, scene_option=scene_opt)
+    still_frame = renderer.render()
 
+    gif_path = OUT_DIR / f"{name}.gif"
     imageio.mimsave(gif_path, frames, fps=fps, loop=0)
-    # Pick the most "interesting" still: halfway, where every joint is fully flexed.
-    imageio.imwrite(png_path, frames[n_frames // 2])
+    imageio.imwrite(png_path, still_frame)
 
     size_mb = gif_path.stat().st_size / (1024 * 1024)
     print(f"  -> {gif_path.relative_to(ROOT)}  ({len(frames)} frames, {size_mb:.2f} MB)")
@@ -146,13 +175,28 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--width",  type=int, default=640)
     p.add_argument("--height", type=int, default=480)
-    p.add_argument("--frames", type=int, default=120, help="number of animation frames")
-    p.add_argument("--fps",    type=int, default=30)
+    p.add_argument("--frames", type=int, default=180,
+                   help="number of animation frames (higher = slower + longer GIF)")
+    p.add_argument("--fps",    type=int, default=24,
+                   help="GIF playback frame rate")
     p.add_argument(
         "--only",
         nargs="*",
         default=None,
         help="subset of model names to render (e.g. --only kistar_hand)",
+    )
+    p.add_argument(
+        "--front-azimuth",
+        type=float,
+        default=90.0,
+        help="camera azimuth (deg) treated as 'front'; PNG still is taken here "
+             "and the GIF orbit starts from this angle (default: 90)",
+    )
+    p.add_argument(
+        "--neutral",
+        action="store_true",
+        help="PNG only, with every joint at qpos=0 (ctrl=0, fully extended pose). "
+             "Skips the GIF entirely - useful for quick multi-angle comparison.",
     )
     args = p.parse_args()
 
@@ -165,6 +209,8 @@ def main() -> int:
             height=args.height,
             n_frames=args.frames,
             fps=args.fps,
+            front_azimuth=args.front_azimuth,
+            neutral=args.neutral,
         )
     return 0
 

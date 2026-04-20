@@ -251,7 +251,7 @@
   </worldbody>
 
   <default>
-    <position kp="30" kv="0.7" forcerange="-1000 1000"/>
+    <position kp="30" kv="0.7" forcerange="-100 100"/>
   </default>
 
   <actuator>

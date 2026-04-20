@@ -127,7 +127,7 @@ robot.show()
 | Total joints      | 20 hinge per hand                                                |
 | Actuators         | 15 position actuators per hand                                   |
 | Mimic / Coupling  | `*_3_joint` ↔ `*_2_joint` (index, middle, ring), `thumb_4` ↔ `thumb_3`, `little_2` ↔ `little_1` |
-| PD gains (MJCF)   | `kp=1000`, `kv=20`, force range ± 100 N·m                        |
+| PD gains (MJCF)   | `kp=30`, `kv=0.7`, force range ± 100 N·m                         |
 | Contact (MJCF)    | disabled (kinematic preview by default)                          |
 
 ---

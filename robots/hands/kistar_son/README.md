@@ -39,7 +39,7 @@ kistar_son/
 | Joints / hand     | 20 hinge                                                             |
 | Actuators / hand  | 15 position actuators                                                |
 | Mimic / Coupling  | `*_3_joint` ↔ `*_2_joint` (index, middle, ring), `thumb_4` ↔ `thumb_3`, `little_2` ↔ `little_1` (5 equality constraints) |
-| PD gains (MJCF)   | `kp=1000`, `kv=20`, force range ± 100 N·m                            |
+| PD gains (MJCF)   | `kp=30`, `kv=0.7`, force range ± 100 N·m                             |
 | Contact           | disabled (kinematic preview by default)                              |
 
 ---
