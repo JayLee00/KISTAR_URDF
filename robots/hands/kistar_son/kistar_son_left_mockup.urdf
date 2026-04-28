@@ -228,7 +228,7 @@
     </link>
 
     <joint name="left_hand_thumb_2_joint" type="revolute">
-      <axis xyz="0 1 0"/>
+      <axis xyz="0 -1 0"/>
       <limit effort="0.2" lower="-1.0472" upper="1.0472" velocity="2.6"/>
       <origin rpy="-0.7854 0. 0." xyz="0. -0.01303 0.01303"/>
       <parent link="left_hand_thumb_1_link"/>
@@ -1518,7 +1518,7 @@
       <inertial>
         <mass value="0.0378"/>
         <origin rpy="0 0 0" xyz="-0.00998 0. 0.01722"/>
-        <inertia ixx="0.00002212955" ixy="0.00000000669" ixz="-0.00000613706" iyy="0.00002663983" iyz="-0.00000001694" izz="0.00000561017"/>
+        <inertia ixx="0.00000419587" ixy="0.00000000141" ixz="-0.00000117570" iyy="0.00000510899" iyz="-0.00000000358" izz="0.00000111263"/>
       </inertial>
       <visual>
         <geometry>

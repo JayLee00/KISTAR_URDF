@@ -64,7 +64,7 @@
         <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="left_hand_thumb_1_link"/>
         <body name="left_hand_thumb_2_link" pos="0 -0.01303 0.01303" quat="0.923879 -0.382684 0 0">
           <inertial pos="0.000139112 0.0204495 -0.00637928" quat="0.641996 0.766591 0.0107085 -0.00808202" mass="0.0473" diaginertia="3.50741e-05 3.31524e-05 4.59604e-06"/>
-          <joint name="left_hand_thumb_2_joint" pos="0 0 0" axis="0 1 0" range="-1.0472 1.0472" actuatorfrcrange="-0.2 0.2" damping="0.1" frictionloss="0.03"/>
+          <joint name="left_hand_thumb_2_joint" pos="0 0 0" axis="0 -1 0" range="-1.0472 1.0472" actuatorfrcrange="-0.2 0.2" damping="0.1" frictionloss="0.03"/>
           <geom type="mesh" mesh="left_hand_thumb_2_link"/>
           <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="left_hand_thumb_2_link"/>
           <geom type="mesh" mesh="left_hand_thumb_2_upper_link"/>
