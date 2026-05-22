@@ -63,6 +63,34 @@
       </visual>
     </link>
 
+
+    <link name="left_hand_base_front_2_link">
+      <collision>
+        <geometry>
+          <mesh filename="01_kistar_son_STL/left_hand_base_front_2_link.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0."/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="01_kistar_son_STL/left_hand_base_front_2_link.STL"/>
+        </geometry>
+        <material name="Grey">
+          <color rgba="0.2 0.2 0.2 1"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="left_hand_base_front_2_joint" type="fixed">
+      <origin rpy="0. 0. 0." xyz="0. 0. 0."/>
+      <parent link="left_hand_base_link"/>
+      <child link="left_hand_base_front_2_link"/>
+    </joint>
+
     <link name="left_hand_base_front_link">
       <collision>
         <geometry>
@@ -117,32 +145,6 @@
       <child link="left_hand_base_back_link"/>
     </joint>
 
-    <link name="left_hand_base_back_2_link">
-      <collision>
-        <geometry>
-          <mesh filename="01_kistar_son_STL/left_hand_base_back_2_link.STL"/>
-        </geometry>
-      </collision>
-      <inertial>
-        <mass value="0."/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
-      </inertial>
-      <visual>
-        <geometry>
-          <mesh filename="01_kistar_son_STL/left_hand_base_back_2_link.STL"/>
-        </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
-        </material>
-      </visual>
-    </link>
-
-    <joint name="left_hand_base_back_2_joint" type="fixed">
-      <origin rpy="0. 0. 0." xyz="0. 0. 0."/>
-      <parent link="left_hand_base_link"/>
-      <child link="left_hand_base_back_2_link"/>
-    </joint>
 
 
   <!-- THUMB -->

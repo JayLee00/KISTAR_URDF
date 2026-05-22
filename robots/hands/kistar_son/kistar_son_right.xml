@@ -9,7 +9,7 @@
     <mesh name="right_hand_base_link" content_type="model/stl" file="right_hand_base_link.STL"/>
     <mesh name="right_hand_base_front_link" content_type="model/stl" file="right_hand_base_front_link.STL"/>
     <mesh name="right_hand_base_back_link" content_type="model/stl" file="right_hand_base_back_link.STL"/>
-    <mesh name="right_hand_base_back_2_link" content_type="model/stl" file="right_hand_base_back_2_link.STL"/>
+    <mesh name="right_hand_base_front_2_link" content_type="model/stl" file="right_hand_base_front_2_link.STL"/>
     <mesh name="right_hand_thumb_base_link" content_type="model/stl" file="right_hand_thumb_base_link.STL"/>
     <mesh name="right_hand_thumb_0_link" content_type="model/stl" file="right_hand_thumb_0_link.STL"/>
     <mesh name="right_hand_thumb_1_link" content_type="model/stl" file="right_hand_thumb_1_link.STL"/>
@@ -51,8 +51,8 @@
     <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="right_hand_base_front_link"/>
     <geom type="mesh" mesh="right_hand_base_back_link"/>
     <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="right_hand_base_back_link"/>
-    <geom type="mesh" mesh="right_hand_base_back_2_link"/>
-    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="right_hand_base_back_2_link"/>
+    <geom type="mesh" mesh="right_hand_base_front_2_link"/>
+    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="right_hand_base_front_2_link"/>
     <geom pos="0.03062 0.0213 0.0253" quat="0.923879 0 0 -0.382684" type="mesh" mesh="right_hand_thumb_base_link"/>
     <geom pos="0.03062 0.0213 0.0253" quat="0.923879 0 0 -0.382684" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="right_hand_thumb_base_link"/>
     <body name="right_hand_thumb_0_link" pos="0.03062 0.0213 0.0253" quat="0.923879 0 0 -0.382684">
