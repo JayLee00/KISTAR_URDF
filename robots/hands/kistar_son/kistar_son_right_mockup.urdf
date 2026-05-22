@@ -1,9 +1,10 @@
 <?xml version="1.0" ?>
-<!--Made by Jaesung Lee from Korea Institute of Science and Technology / Last update: 2025-09-09-->
-<!--Updated by Sungwoo Park from Korea Institute of Science and Technology / Last update: 2025-09-10-->
-<!--Updated by Jaesung Lee from Korea Institute of Science and Technology / Last update: 2025-09-15-->
-<!--Updated by Jaesung Lee from Korea Institute of Science and Technology / Last update: 2025-12-15-->
-<!--Updated by Jaesung Lee from Korea Institute of Science and Technology / Last update: 2026-04-17-->
+<!--Made by Jaesung Lee from PRIME Lab/ Last update: 2025-09-09-->
+<!--Updated by Sungwoo Park from PRIME Lab/ Last update: 2025-09-10-->
+<!--Updated by Jaesung Lee from PRIME Lab/ Last update: 2025-09-15-->
+<!--Updated by Jaesung Lee from PRIME Lab/ Last update: 2025-12-15-->
+<!--Updated by Jaesung Lee from PRIME Lab/ Last update: 2026-04-17-->
+<!--Updated by Jaesung Lee from PRIME Lab/ Last update: 2026-05-22-->
 
 <robot name="KISTAR_SON_RIGHT">
 
@@ -13,7 +14,7 @@
       <flag contact="disable"/>
     </option>
     <default>
-      <position kp="2" kv="0.1" forcerange="-0.2 0.2"/>
+      <position kp="30" kv="0.7" forcerange="-100 100"/>
     </default>
     <actuator>
       <!-- THUMB (thumb_5 is mimic of thumb_4 - not actuated) -->
@@ -88,7 +89,7 @@
       <child link="right_hand_base_front_link"/>
     </joint>
 
-        <link name="right_hand_base_back_link">
+    <link name="right_hand_base_back_link">
       <collision>
         <geometry>
           <mesh filename="01_kistar_son_STL/right_hand_base_back_link.STL"/>
@@ -114,6 +115,33 @@
       <parent link="right_hand_base_link"/>
       <child link="right_hand_base_back_link"/>
     </joint>
+
+     <link name="right_hand_base_back_2_link">
+        <collision>
+          <geometry>
+            <mesh filename="01_kistar_son_STL/right_hand_base_back_2_link.STL"/>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass value="0."/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+        <visual>
+          <geometry>
+            <mesh filename="01_kistar_son_STL/right_hand_base_back_2_link.STL"/>
+          </geometry>
+          <material name="Grey">
+            <color rgba="0.2 0.2 0.2 1"/>
+          </material>
+        </visual>
+      </link>
+
+      <joint name="right_hand_base_back_2_joint" type="fixed">
+        <origin rpy="0. 0. 0." xyz="0. 0. 0."/>
+        <parent link="right_hand_base_link"/>
+        <child link="right_hand_base_back_2_link"/>
+      </joint>
 
 
   <!-- THUMB -->
