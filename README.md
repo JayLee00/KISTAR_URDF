@@ -1,6 +1,6 @@
 # KISTAR_URDF
 
-> **Mechanical CAD (STEP):** [**Sungwoo Park**](https://github.com/psw2939) (Korea University / KIST)  
+> **CAD:** [**Sungwoo Park**](https://github.com/psw2939) (Korea University / KIST)  
 > **URDF / MJCF / STL conversion:** **Jaesung Lee** ([KIST](https://www.kist.re.kr))
 
 Open-source **URDF** and **MuJoCo MJCF** distribution of the KISTAR Hand family,
