@@ -1,7 +1,7 @@
 """Render animated GIF + still PNG previews for every MJCF model.
 
 Drives every actuated joint through 60% of its range on a cosine schedule while
-orbiting the camera slowly, then writes
+the camera completes one full 360° Z-axis orbit per loop, then writes
 
     doc/<model>.gif   # looping animation for README
     doc/<model>.png   # single-frame still (quarter-cycle pose)
@@ -142,16 +142,12 @@ def render_one(
         print(f"  -> {png_path.relative_to(ROOT)}  (neutral pose, az={front_azimuth:.0f})")
         return
 
-    # -------- GIF: azimuth oscillates front ± 90 deg (z-axis pan), joints flex --
-    # Camera follows a smooth sine wave so it loops perfectly: front -> +90 ->
-    # front -> -90 -> front per period. Joints also cycle once per period.
-    # If you want the GIF to cover the *opposite* hemisphere from the PNG, pass
-    # --front-azimuth 180 (relative to the PNG front).
+    # -------- GIF: full 360° Z-axis orbit (one turn per loop), joints flex ----
     frames = []
     for k in range(n_frames):
         phase = 0.5 - 0.5 * np.cos(2 * np.pi * k / n_frames)  # [0, 1]
         _drive_joints(phase)
-        cam.azimuth = front_azimuth + 90.0 * np.sin(2 * np.pi * k / n_frames)
+        cam.azimuth = front_azimuth + 360.0 * k / n_frames
         renderer.update_scene(data, camera=cam, scene_option=scene_opt)
         frames.append(renderer.render())
 
@@ -178,8 +174,8 @@ def main() -> int:
     p.add_argument("--height", type=int, default=480)
     p.add_argument("--frames", type=int, default=180,
                    help="number of animation frames (higher = slower + longer GIF)")
-    p.add_argument("--fps",    type=int, default=24,
-                   help="GIF playback frame rate")
+    p.add_argument("--fps",    type=int, default=16,
+                   help="GIF playback frame rate (default 16 ≈ 2/3 of prior 24 fps)")
     p.add_argument(
         "--only",
         nargs="*",
@@ -189,9 +185,8 @@ def main() -> int:
     p.add_argument(
         "--front-azimuth",
         type=float,
-        default=90.0,
-        help="camera azimuth (deg) treated as 'front'; PNG still is taken here "
-             "and the GIF orbit starts from this angle (default: 90)",
+        default=180.0,
+        help="camera azimuth (deg) for PNG still and GIF orbit start (default: 180)",
     )
     p.add_argument(
         "--neutral",
