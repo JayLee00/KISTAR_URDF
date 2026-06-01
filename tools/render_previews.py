@@ -174,8 +174,8 @@ def main() -> int:
     p.add_argument("--height", type=int, default=480)
     p.add_argument("--frames", type=int, default=180,
                    help="number of animation frames (higher = slower + longer GIF)")
-    p.add_argument("--fps",    type=int, default=16,
-                   help="GIF playback frame rate (default 16 ≈ 2/3 of prior 24 fps)")
+    p.add_argument("--fps",    type=int, default=24,
+                   help="GIF playback frame rate")
     p.add_argument(
         "--only",
         nargs="*",
