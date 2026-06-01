@@ -1,0 +1,24 @@
+# KISTAR Hand — Link Inertia
+
+Source: `robots/hands/kistar_hand/kistar_hand_right.urdf` (link frame, URDF `<inertial>`)
+
+Units: mass **g**, inertia **g·mm²**, COM **mm**.
+
+Index / Middle / Ring finger links share the same mesh & inertia; one row per unique part. Pad links (mass 0) omitted.
+
+| 파트명 | URDF link | mass (g) | COM x | COM y | COM z | ixx | iyy | izz | ixy | ixz | iyz |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Palm | `right_hand_base_link` | 154.76 | -16.69 | 0.79 | -28.62 | 327051.82 | 351002.57 | 163231.5 | -10500.22 | 53860.46 | -3370.09 |
+| Thumb_Basemotor | `right_hand_thumb_base_link` | 19.04 | 10.02 | 0.44 | 0 | 1071.97 | 3449.68 | 3153.05 | 81.51 | 0 | 0 |
+| Thumb_Link_0 | `right_hand_thumb_0_link` | 24.23 | -7.14 | 0 | 20.81 | 13173.38 | 14976.41 | 3187.67 | 0 | -3863.19 | 0 |
+| Thumb_Link_1 | `right_hand_thumb_1_link` | 1.91 | 0.43 | 0 | 3.45 | 236.89 | 76.51 | 210.19 | 0 | 7.84 | 0 |
+| Thumb_Link_2 | `right_hand_thumb_2_link` | 18.27 | -1.54 | 0.21 | 18.42 | 7961.38 | 7521.32 | 1056.96 | -11.14 | -530.85 | 17.19 |
+| Thumb_Tip_Bracket | `right_hand_thumb_3_link` | 7.19 | -1.9 | 0 | 16.26 | 736540 | 201170 | 712770 | 0 | -22270 | 0 |
+| Tip | `right_hand_thumb_3_tip_link` | 7.19 | 0 | 0 | 8.16 | 303780 | 303780 | 270290 | 0 | 0 | 0 |
+| Basemotor | `right_hand_index_base_link` | 19.04 | 13.38 | 0.95 | -2.07 | 1210.99 | 5484.03 | 5071.72 | 303.59 | -564.82 | -31.64 |
+| Link_0 | `right_hand_index_0_link` | 4.73 | -3.53 | 0 | 9.48 | 769.51 | 925.15 | 620.17 | 0 | -98.58 | 0 |
+| Link_1 | `right_hand_index_1_link` | 35.49 | -1.66 | 0 | 16.75 | 16070.25 | 15107.46 | 2190.08 | 0 | -989.13 | 0 |
+| Link_2 | `right_hand_index_2_link` | 3 | -1.46 | 0 | 6.59 | 2005470 | 504650 | 1962770 | 0 | -54380 | 0 |
+| Finger_Motor | `right_hand_index_2_motor_link` | 15 | -1.63 | 0 | 6.77 | 415370 | 287850 | 292160 | 0 | 1090 | 0 |
+| Tip_Bracket | `right_hand_index_3_link` | 7.19 | -1.37 | 0 | 6.21 | 736540 | 201170 | 712770 | 0 | -22270 | 0 |
+| Tip_Silicone | `right_hand_index_3_tip_link` | 7.19 | 0 | 0 | 8.16 | 303780 | 303780 | 270290 | 0 | 0 | 0 |

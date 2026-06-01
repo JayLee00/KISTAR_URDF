@@ -15,7 +15,8 @@ each robot lives under `robots/hands/<model_name>/` together with its meshes.
 
 | Robot Model        | Animation                                                          | Still pose                                                   | Format       |
 | ------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------ | ------------ |
-| **KISTAR Hand**    | ![kistar_hand animation](doc/kistar_hand.gif)                      | ![kistar_hand still](doc/kistar_hand.png)                    | URDF + MJCF  |
+| **KISTAR Hand (R)** | ![kistar_hand_right animation](doc/kistar_hand_right.gif)          | ![kistar_hand_right still](doc/kistar_hand_right.png)        | URDF + MJCF  |
+| **KISTAR Hand (L)** | ![kistar_hand_left animation](doc/kistar_hand_left.gif)            | ![kistar_hand_left still](doc/kistar_hand_left.png)          | URDF + MJCF  |
 | **KISTAR-SON (R)** | ![kistar_son_right animation](doc/kistar_son_right.gif)            | ![kistar_son_right still](doc/kistar_son_right.png)          | URDF + MJCF  |
 | **KISTAR-SON (L)** | ![kistar_son_left animation](doc/kistar_son_left.gif)              | ![kistar_son_left still](doc/kistar_son_left.png)            | URDF + MJCF  |
 
@@ -45,11 +46,13 @@ KISTAR_URDF/
 │   └── RENDER.md
 └── robots/
     └── hands/
-        ├── kistar_hand/           # KISTAR Hand Ver2 (4 fingers, single hand)
-        │   ├── kistar_hand.urdf
-        │   ├── kistar_hand.xml    # MuJoCo MJCF (16 joints / 13 actuators / 3 mimic)
+        ├── kistar_hand/           # KISTAR Hand Ver2 (4 fingers, left + right)
+        │   ├── kistar_hand_right.urdf
+        │   ├── kistar_hand_left.urdf
+        │   ├── kistar_hand_right.xml
+        │   ├── kistar_hand_left.xml   # MuJoCo MJCF (16 joints / 16 actuators)
         │   ├── README.md
-        │   └── meshes/kistar/*.STL
+        │   └── 01_kistar_hand_stl/*.STL
         └── kistar_son/            # KISTAR-SON (5 fingers, left + right)
             ├── kistar_son_right_mockup.urdf
             ├── kistar_son_left_mockup.urdf
@@ -74,8 +77,11 @@ pip install mujoco yourdfpy numpy
 ### 2. Open a model in MuJoCo
 
 ```bash
-# KISTAR Hand (Ver2)
-python -m mujoco.viewer --mjcf=robots/hands/kistar_hand/kistar_hand.xml
+# KISTAR Hand (Ver2, right)
+python -m mujoco.viewer --mjcf=robots/hands/kistar_hand/kistar_hand_right.xml
+
+# KISTAR Hand (Ver2, left)
+python -m mujoco.viewer --mjcf=robots/hands/kistar_hand/kistar_hand_left.xml
 
 # KISTAR-SON (right)
 python -m mujoco.viewer --mjcf=robots/hands/kistar_son/kistar_son_right.xml
@@ -99,7 +105,7 @@ URDF files are compatible with: `yourdfpy`, RViz, Gazebo, IsaacGym, IsaacSim, SA
 
 ```python
 import yourdfpy
-robot = yourdfpy.URDF.load("robots/hands/kistar_hand/kistar_hand.urdf")
+robot = yourdfpy.URDF.load("robots/hands/kistar_hand/kistar_hand_right.urdf")
 robot.show()
 ```
 
@@ -113,8 +119,8 @@ robot.show()
 | ----------------- | -------------------------------------------------------------------- |
 | Fingers           | 4 (thumb, index, middle, ring)                                       |
 | Total joints      | 16 hinge                                                             |
-| Actuators         | 13 position actuators                                                |
-| Mimic / Coupling  | `*_joint_3` follows `*_joint_2` (index, middle, ring) via equality   |
+| Actuators         | 16 position actuators per hand                                       |
+| Mimic / Coupling  | none (all joints independently actuated)                             |
 | Sensors           | thumb 2 / index, middle, ring 3 each (modeled as welded bodies)      |
 | PD gains (MJCF)   | `kp=30`, `kv=0.7`, force range ± 100 N·m                             |
 | Contact (MJCF)    | disabled (kinematic preview by default)                              |

@@ -42,7 +42,8 @@ _WRAPPER_TEMPLATE = """<mujoco model="preview_{name}">
 """
 
 MODELS: list[tuple[str, Path]] = [
-    ("kistar_hand",      ROOT / "robots/hands/kistar_hand/kistar_hand.xml"),
+    ("kistar_hand_right", ROOT / "robots/hands/kistar_hand/kistar_hand_right.xml"),
+    ("kistar_hand_left",  ROOT / "robots/hands/kistar_hand/kistar_hand_left.xml"),
     ("kistar_son_right", ROOT / "robots/hands/kistar_son/kistar_son_right.xml"),
     ("kistar_son_left",  ROOT / "robots/hands/kistar_son/kistar_son_left.xml"),
 ]

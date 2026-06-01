@@ -1,35 +1,16 @@
 <?xml version="1.0" ?>
-<!--Made by Jaesung Lee from Korea Institute of Science and Technology / Last update: 2025-08-15-->
+<!--Made by Jaesung Lee from PRIME Lab/ Last update: 2025-08-15-->
+<!--Modified by Jaesung Lee from PRIME Lab/ Last update: 2026-06-01-->
 
-<robot name="kistar_hand">
+<robot name="kistar_hand_right">
 
-  <!-- MOUNT -->
-    <link name="mount">
-      <collision>
-        <geometry>
-          <mesh filename="meshes/kistar/mount.STL"/>
-        </geometry>
-      </collision>
-      <inertial>
-        <mass value="0.0"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
-      </inertial>
-      <visual>
-        <geometry>
-          <mesh filename="meshes/kistar/mount.STL"/>
-        </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
-        </material>
-      </visual>
-    </link>
+
 
   <!-- PALM -->
-    <link name="palm">
+    <link name="right_hand_base_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/Palm.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_base_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -40,27 +21,20 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/Palm.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_base_link.STL"/>
         </geometry>
         <material name="Black">
-          <color rgba="0 0 0 1"/>
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
 
-  <!-- MOUNT JOINT -->
-    <joint name="kistar_mount_joint" type="fixed">
-      <origin rpy="0. 0. 0." xyz="0. 0. 0.071"/>
-      <parent link="mount"/>
-      <child link="palm"/>
-    </joint>
-
 
   <!-- THUMB -->
-    <link name="thumb_basemotor">
+    <link name="right_hand_thumb_base_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/thp1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_base_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -70,25 +44,26 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/thp1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_base_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
+
     <!-- THUMB JOINT -->
-    <joint name="thumb_base_joint" type="fixed">
-      <origin rpy="-0.0873 0. 0." xyz="-0.02325 0.01224 -0.02988"/>
-      <parent link="palm"/>
-      <child link="thumb_basemotor"/>
+    <joint name="right_hand_thumb_base_joint" type="fixed">
+      <origin rpy="-0.0873 0. 0." xyz="-0.0107 0.01224 0.03612"/>
+      <parent link="right_hand_base_link"/>
+      <child link="right_hand_thumb_base_link"/>
     </joint>
 
 
-    <link name="thumb_link_0">
+    <link name="right_hand_thumb_0_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/thumb_link_0.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_0_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -98,27 +73,27 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/thumb_link_0.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_0_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="thumb_joint_0" type="revolute">
-      <axis xyz="0 1 0"/>
+    <joint name="right_hand_thumb_0_joint" type="revolute">
+      <axis xyz="0 0 -1"/>
       <limit effort="0.2" lower="0." upper="1.5708" velocity="6.283"/>
-      <origin rpy="-1.5708 0. 0." xyz="0.0197 0.002 0."/>
-      <parent link="thumb_basemotor"/>
-      <child link="thumb_link_0"/>
+      <origin rpy="0. 0. 0." xyz="0.0197 0.002 0."/>
+      <parent link="right_hand_thumb_base_link"/>
+      <child link="right_hand_thumb_0_link"/>
       <dynamics damping="0.0414019" friction="0.0523963"/>
     </joint>
 
-    <link name="thumb_link_1">
+    <link name="right_hand_thumb_1_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/thumb_link_1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_1_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -128,28 +103,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/thumb_link_1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_1_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="thumb_joint_1" type="revolute">
-      <axis xyz="0 0 1"/>
+    <joint name="right_hand_thumb_1_joint" type="revolute">
+      <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="-1.5708" upper="1.5708" velocity="6.283"/>
-      <origin rpy="0. 0. 0." xyz="-0.002 0. 0.036"/>
-      <parent link="thumb_link_0"/>
-      <child link="thumb_link_1"/>
+      <origin rpy="0. 0. 0." xyz="0. 0.036 0."/>
+      <parent link="right_hand_thumb_0_link"/>
+      <child link="right_hand_thumb_1_link"/>
       <dynamics damping="0.00587541" friction="0.0150275"/>
     </joint>
 
 
-    <link name="thumb_link_2">
+    <link name="right_hand_thumb_2_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/thumb_link_2.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_2_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -159,28 +134,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/thumb_link_2.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_2_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="thumb_joint_2" type="revolute">
-      <axis xyz="0 1 0"/>
+    <joint name="right_hand_thumb_2_joint" type="revolute">
+      <axis xyz="0 0 -1"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
-      <origin rpy="0. 0. 0." xyz="0.002 0. 0.0102"/>
-      <parent link="thumb_link_1"/>
-      <child link="thumb_link_2"/>
+      <origin rpy="0. 0. 0." xyz="0. 0.0102 0."/>
+      <parent link="right_hand_thumb_1_link"/>
+      <child link="right_hand_thumb_2_link"/>
       <dynamics damping="0.010638" friction="0.00616359"/>
     </joint>
 
 
-    <link name="thumb_tip_braket">
+    <link name="right_hand_thumb_3_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/Tip_braket.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_3_link.STL"/>
         </geometry>
       </collision>
     <inertial>
@@ -189,28 +164,28 @@
       <inertia ixx="0.00073654000" ixy="0.00000000000" ixz="-0.00002227000" iyy="0.00020117000" iyz="0.00000000000" izz="0.00071277000"/>    </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/Tip_braket.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_3_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="thumb_joint_3" type="revolute">
-      <axis xyz="0 1 0"/>
+    <joint name="right_hand_thumb_3_joint" type="revolute">
+      <axis xyz="0 0 -1"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
-      <origin rpy="0. 0. 0." xyz="0. 0. 0.0335"/>
-      <parent link="thumb_link_2"/>
-      <child link="thumb_tip_braket"/>
+      <origin rpy="0. 0. 0." xyz="0. 0.0335 0."/>
+      <parent link="right_hand_thumb_2_link"/>
+      <child link="right_hand_thumb_3_link"/>
       <dynamics damping="0.0226948" friction="0.0227036"/>
     </joint>  
 
 
-    <link name="thumb_tip">
+    <link name="right_hand_thumb_3_tip_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_tip.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_3_tip_link.STL"/>
         </geometry>
       </collision>
     <inertial>
@@ -219,25 +194,25 @@
         <inertia ixx="0.00030378000" ixy="0.00000000000" ixz="0.00000000000" iyy="0.00030378000" iyz="0.00000000000" izz="0.00027029000"/>    </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_tip.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_thumb_3_tip_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="thumb_tip_joint" type="fixed">
-      <origin rpy="0. 0. 0." xyz="-0.002 0. 0.010"/>
-      <parent link="thumb_tip_braket"/>
-      <child link="thumb_tip"/>
+    <joint name="right_hand_thumb_3_tip_joint" type="fixed">
+      <origin rpy="0. 0. 0." xyz="0. 0. 0."/>
+      <parent link="right_hand_thumb_3_link"/>
+      <child link="right_hand_thumb_3_tip_link"/>
     </joint>
 
 
-    <link name="thumb_sensor_0">
+    <link name="right_hand_thumb_pad_0">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -247,25 +222,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="thumb_sensor_0" type="fixed">
-      <origin rpy="0. 0. 0." xyz="0.00525 0. 0.00865"/>
-      <parent link="thumb_link_2"/>
-      <child link="thumb_sensor_0"/>
+    <joint name="right_hand_thumb_pad_0_joint" type="fixed">
+      <origin rpy="1.5708 0. 0." xyz="0.00525 0.00865 0."/>
+      <parent link="right_hand_thumb_2_link"/>
+      <child link="right_hand_thumb_pad_0"/>
     </joint>
 
 
-    <link name="thumb_sensor_1">
+    <link name="right_hand_thumb_pad_1">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -275,26 +250,26 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="thumb_sensor_1" type="fixed">
-      <origin rpy="0. 0. 0." xyz="0.00525 0. 0.02485"/>
-      <parent link="thumb_link_2"/>
-      <child link="thumb_sensor_1"/>
+    <joint name="right_hand_thumb_pad_1_joint" type="fixed">
+      <origin rpy="1.5708 0. 0." xyz="0.00525 0.02485 0."/>
+      <parent link="right_hand_thumb_2_link"/>
+      <child link="right_hand_thumb_pad_1"/>
     </joint>
 
 
   <!--INDEX-->
-      <link name="index_basemotor">
+      <link name="right_hand_index_base_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_basemotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_base_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -305,25 +280,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_basemotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_base_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_base_joint" type="fixed">
-      <origin rpy="-0.0873 0. 0." xyz="-0.02325 0.02935 -0.0004"/>
-      <parent link="palm"/>
-      <child link="index_basemotor"/>
+    <joint name="right_hand_index_base_joint" type="fixed">
+      <origin rpy="-0.0873 0. 0." xyz="-0.0107 0.02883 0.06375"/>
+      <parent link="right_hand_base_link"/>
+      <child link="right_hand_index_base_link"/>
     </joint>
 
 
-    <link name="index_link_0">
+    <link name="right_hand_index_0_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_0.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_0_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -334,28 +309,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_0.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_0_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_joint_0" type="revolute">
+    <joint name="right_hand_index_0_joint" type="revolute">
       <axis xyz="1 0 0"/>
       <limit effort="0.2" lower="-0.261799" upper="0.261799" velocity="6.283"/>
       <origin rpy="0. 0. 0." xyz="0.02325 0. 0.0047"/>
-      <parent link="index_basemotor"/>
-      <child link="index_link_0"/>
+      <parent link="right_hand_index_base_link"/>
+      <child link="right_hand_index_0_link"/>
       <dynamics damping="0.0414019" friction="0.0523963"/>
     </joint>
 
 
-    <link name="index_link_1">
+    <link name="right_hand_index_1_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_1_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -366,28 +341,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_1_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_joint_1" type="revolute">
+    <joint name="right_hand_index_1_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0. 0. 0." xyz="0.002 0. 0.0195"/>
-      <parent link="index_link_0"/>
-      <child link="index_link_1"/>
+      <parent link="right_hand_index_0_link"/>
+      <child link="right_hand_index_1_link"/>
       <dynamics damping="0.00587541" friction="0.0150275"/>
     </joint>
 
 
-    <link name="index_link_2">
+    <link name="right_hand_index_2_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_2.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -398,28 +373,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_2.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_joint_2" type="revolute">
+    <joint name="right_hand_index_2_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0 0 0" xyz="0. 0. 0.0335"/>
-      <parent link="index_link_1"/>
-      <child link="index_link_2"/>
+      <parent link="right_hand_index_1_link"/>
+      <child link="right_hand_index_2_link"/>
       <dynamics damping="0.010638" friction="0.00616359"/>
     </joint>
 
 
-    <link name="index_finger_motor">
+    <link name="right_hand_index_2_motor_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_halfmotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_motor_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -430,25 +405,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_halfmotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_motor_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link> 
 
-    <joint name="index_finger_motor_joint" type="fixed">
+    <joint name="right_hand_index_2_motor_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0. 0. 0.0267"/>
-      <parent link="index_link_2"/>
-      <child link="index_finger_motor"/>
+      <parent link="right_hand_index_2_link"/>
+      <child link="right_hand_index_2_motor_link"/>
     </joint>
 
 
-    <link name="index_tip_braket">
+    <link name="right_hand_index_3_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/Tip_braket.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -459,28 +434,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/Tip_braket.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_joint_3" type="revolute">
+    <joint name="right_hand_index_3_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0 0 0" xyz="0. 0. 0."/>
-      <parent link="index_finger_motor"/>
-      <child link="index_tip_braket"/>
+      <parent link="right_hand_index_2_motor_link"/>
+      <child link="right_hand_index_3_link"/>
       <dynamics damping="0.0226948" friction="0.0227036"/>
     </joint>
 
 
-    <link name="index_tip">
+    <link name="right_hand_index_3_tip_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_tip.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_tip_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -491,24 +466,24 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_tip.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_tip_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_tip_joint" type="fixed">
+    <joint name="right_hand_index_3_tip_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="-0.002 0. 0.010"/>
-      <parent link="index_tip_braket"/>
-      <child link="index_tip"/>
+      <parent link="right_hand_index_3_link"/>
+      <child link="right_hand_index_3_tip_link"/>
     </joint>
 
-    <link name="index_sensor_0">
+    <link name="right_hand_index_pad_0">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -518,25 +493,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_sensor_0" type="fixed">
+    <joint name="right_hand_index_pad_0_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. 0.00865"/>
-      <parent link="index_link_1"/>
-      <child link="index_sensor_0"/>
+      <parent link="right_hand_index_1_link"/>
+      <child link="right_hand_index_pad_0"/>
     </joint>
 
   
-    <link name="index_sensor_1">
+    <link name="right_hand_index_pad_1">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -546,25 +521,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_sensor_1" type="fixed">
+    <joint name="right_hand_index_pad_1_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. 0.02485"/>
-      <parent link="index_link_1"/>
-      <child link="index_sensor_1"/>
+      <parent link="right_hand_index_1_link"/>
+      <child link="right_hand_index_pad_1"/>
     </joint>
 
   
-    <link name="index_sensor_2">
+    <link name="right_hand_index_pad_2">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -574,27 +549,27 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="index_sensor_2" type="fixed">
+    <joint name="right_hand_index_pad_2_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. -0.00865"/>
-      <parent link="index_finger_motor"/>
-      <child link="index_sensor_2"/>
+      <parent link="right_hand_index_2_motor_link"/>
+      <child link="right_hand_index_pad_2"/>
     </joint>
 
 
 
   <!-- MIDDLE -->
-    <link name="middle_basemotor">
+    <link name="right_hand_middle_base_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_basemotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_base_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -605,25 +580,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_basemotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_base_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_base_joint" type="fixed">
-      <origin rpy="0. 0. 0." xyz="-0.02325 0. 0."/>
-      <parent link="palm"/>
-      <child link="middle_basemotor"/>
+    <joint name="right_hand_middle_base_joint" type="fixed">
+      <origin rpy="0. 0. 0." xyz="-0.0107 0. 0.065"/>
+      <parent link="right_hand_base_link"/>
+      <child link="right_hand_middle_base_link"/>
     </joint>
 
 
-    <link name="middle_link_0">
+    <link name="right_hand_middle_0_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_0.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_0_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -634,28 +609,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_0.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_0_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_joint_0" type="revolute">
+    <joint name="right_hand_middle_0_joint" type="revolute">
       <axis xyz="1 0 0"/>
       <limit effort="0.2" lower="-0.261799" upper="0.261799" velocity="6.283"/>
       <origin rpy="0. 0. 0." xyz="0.02325 0. 0.0047"/>
-      <parent link="middle_basemotor"/>
-      <child link="middle_link_0"/>
+      <parent link="right_hand_middle_base_link"/>
+      <child link="right_hand_middle_0_link"/>
       <dynamics damping="0.0414019" friction="0.0523963"/>
     </joint>
 
 
-    <link name="middle_link_1">
+    <link name="right_hand_middle_1_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_1_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -666,28 +641,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_1_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_joint_1" type="revolute">
+    <joint name="right_hand_middle_1_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0. 0. 0." xyz="0.002 0. 0.0195"/>
-      <parent link="middle_link_0"/>
-      <child link="middle_link_1"/>
+      <parent link="right_hand_middle_0_link"/>
+      <child link="right_hand_middle_1_link"/>
       <dynamics damping="0.00587541" friction="0.0150275"/>
     </joint>
 
 
-    <link name="middle_link_2">
+    <link name="right_hand_middle_2_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_2.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -698,28 +673,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_2.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_joint_2" type="revolute">
+    <joint name="right_hand_middle_2_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0 0 0" xyz="0. 0. 0.0335"/>
-      <parent link="middle_link_1"/>
-      <child link="middle_link_2"/>
+      <parent link="right_hand_middle_1_link"/>
+      <child link="right_hand_middle_2_link"/>
       <dynamics damping="0.010638" friction="0.00616359"/>
     </joint>
 
 
-    <link name="middle_finger_motor">
+    <link name="right_hand_middle_2_motor_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_halfmotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_motor_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -730,25 +705,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_halfmotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_motor_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link> 
 
-    <joint name="middle_finger_motor_joint" type="fixed">
+    <joint name="right_hand_middle_2_motor_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0. 0. 0.0267"/>
-      <parent link="middle_link_2"/>
-      <child link="middle_finger_motor"/>
+      <parent link="right_hand_middle_2_link"/>
+      <child link="right_hand_middle_2_motor_link"/>
     </joint>
 
 
-    <link name="middle_tip_braket">
+    <link name="right_hand_middle_3_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/Tip_braket.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -759,28 +734,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/Tip_braket.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_joint_3" type="revolute">
+    <joint name="right_hand_middle_3_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0 0 0" xyz="0. 0. 0."/>
-      <parent link="middle_finger_motor"/>
-      <child link="middle_tip_braket"/>
+      <parent link="right_hand_middle_2_motor_link"/>
+      <child link="right_hand_middle_3_link"/>
       <dynamics damping="0.0226948" friction="0.0227036"/>
     </joint>
 
 
-    <link name="middle_tip">
+    <link name="right_hand_middle_3_tip_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_tip.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_tip_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -791,24 +766,24 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_tip.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_tip_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_tip_joint" type="fixed">
+    <joint name="right_hand_middle_3_tip_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="-0.002 0. 0.010"/>
-      <parent link="middle_tip_braket"/>
-      <child link="middle_tip"/>
+      <parent link="right_hand_middle_3_link"/>
+      <child link="right_hand_middle_3_tip_link"/>
     </joint>
 
-    <link name="middle_sensor_0">
+    <link name="right_hand_middle_pad_0">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -818,25 +793,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_sensor_0" type="fixed">
+    <joint name="right_hand_middle_pad_0_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. 0.00865"/>
-      <parent link="middle_link_1"/>
-      <child link="middle_sensor_0"/>
+      <parent link="right_hand_middle_1_link"/>
+      <child link="right_hand_middle_pad_0"/>
     </joint>
 
   
-    <link name="middle_sensor_1">
+    <link name="right_hand_middle_pad_1">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -846,25 +821,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_sensor_1" type="fixed">
+    <joint name="right_hand_middle_pad_1_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. 0.02485"/>
-      <parent link="middle_link_1"/>
-      <child link="middle_sensor_1"/>
+      <parent link="right_hand_middle_1_link"/>
+      <child link="right_hand_middle_pad_1"/>
     </joint>
 
   
-    <link name="middle_sensor_2">
+    <link name="right_hand_middle_pad_2">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -874,27 +849,27 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="middle_sensor_2" type="fixed">
+    <joint name="right_hand_middle_pad_2_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. -0.00865"/>
-      <parent link="middle_finger_motor"/>
-      <child link="middle_sensor_2"/>
+      <parent link="right_hand_middle_2_motor_link"/>
+      <child link="right_hand_middle_pad_2"/>
     </joint>
 
 
 
   <!-- RING -->
-    <link name="ring_basemotor">
+    <link name="right_hand_ring_base_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_basemotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_base_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -905,25 +880,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_basemotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_base_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_base_joint" type="fixed">
-      <origin rpy="0.0873 0. 0." xyz="-0.02325 -0.02935 -0.0004"/>
-      <parent link="palm"/>
-      <child link="ring_basemotor"/>
+    <joint name="right_hand_ring_base_joint" type="fixed">
+      <origin rpy="0.0873 0. 0." xyz="-0.0107 -0.02883 0.06375"/>
+      <parent link="right_hand_base_link"/>
+      <child link="right_hand_ring_base_link"/>
     </joint>
 
 
-    <link name="ring_link_0">
+    <link name="right_hand_ring_0_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_0.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_0_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -934,28 +909,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_0.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_0_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_joint_0" type="revolute">
+    <joint name="right_hand_ring_0_joint" type="revolute">
       <axis xyz="1 0 0"/>
       <limit effort="0.2" lower="-0.261799" upper="0.261799" velocity="6.283"/>
       <origin rpy="0. 0. 0." xyz="0.02325 0. 0.0047"/>
-      <parent link="ring_basemotor"/>
-      <child link="ring_link_0"/>
+      <parent link="right_hand_ring_base_link"/>
+      <child link="right_hand_ring_0_link"/>
       <dynamics damping="0.0414019" friction="0.0523963"/>
     </joint>
 
 
-    <link name="ring_link_1">
+    <link name="right_hand_ring_1_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_1_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -966,28 +941,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_1.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_1_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_joint_1" type="revolute">
+    <joint name="right_hand_ring_1_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0. 0. 0." xyz="0.002 0. 0.0195"/>
-      <parent link="ring_link_0"/>
-      <child link="ring_link_1"/>
+      <parent link="right_hand_ring_0_link"/>
+      <child link="right_hand_ring_1_link"/>
       <dynamics damping="0.00587541" friction="0.0150275"/>
     </joint>
 
 
-    <link name="ring_link_2">
+    <link name="right_hand_ring_2_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_2.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -998,28 +973,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_link_2.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_joint_2" type="revolute">
+    <joint name="right_hand_ring_2_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0 0 0" xyz="0. 0. 0.0335"/>
-      <parent link="ring_link_1"/>
-      <child link="ring_link_2"/>
+      <parent link="right_hand_ring_1_link"/>
+      <child link="right_hand_ring_2_link"/>
       <dynamics damping="0.010638" friction="0.00616359"/>
     </joint>
 
 
-    <link name="ring_finger_motor">
+    <link name="right_hand_ring_2_motor_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_halfmotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_motor_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -1030,25 +1005,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_halfmotor.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_2_motor_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Black">
+          <color rgba="0.094118 0.094118 0.098039 1"/>
         </material>
       </visual>
     </link> 
 
-    <joint name="ring_finger_motor_joint" type="fixed">
+    <joint name="right_hand_ring_2_motor_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0. 0. 0.0267"/>
-      <parent link="ring_link_2"/>
-      <child link="ring_finger_motor"/>
+      <parent link="right_hand_ring_2_link"/>
+      <child link="right_hand_ring_2_motor_link"/>
     </joint>
 
 
-    <link name="ring_tip_braket">
+    <link name="right_hand_ring_3_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/Tip_braket.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -1059,28 +1034,28 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/Tip_braket.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="MetallicRed">
+          <color rgba="0.784314 0.062745 0.180392 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_joint_3" type="revolute">
+    <joint name="right_hand_ring_3_joint" type="revolute">
       <axis xyz="0 1 0"/>
       <limit effort="0.2" lower="0" upper="1.5708" velocity="6.283"/>
       <origin rpy="0 0 0" xyz="0. 0. 0."/>
-      <parent link="ring_finger_motor"/>
-      <child link="ring_tip_braket"/>
+      <parent link="right_hand_ring_2_motor_link"/>
+      <child link="right_hand_ring_3_link"/>
       <dynamics damping="0.0226948" friction="0.0227036"/>
     </joint>
 
 
-    <link name="ring_tip">
+    <link name="right_hand_ring_3_tip_link">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/finger_tip.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_tip_link.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -1091,24 +1066,24 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/finger_tip.STL"/>
+          <mesh filename="01_kistar_hand_stl/right_hand_finger_3_tip_link.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_tip_joint" type="fixed">
+    <joint name="right_hand_ring_3_tip_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="-0.002 0. 0.010"/>
-      <parent link="ring_tip_braket"/>
-      <child link="ring_tip"/>
+      <parent link="right_hand_ring_3_link"/>
+      <child link="right_hand_ring_3_tip_link"/>
     </joint>
 
-    <link name="ring_sensor_0">
+    <link name="right_hand_ring_pad_0">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -1118,25 +1093,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_sensor_0" type="fixed">
+    <joint name="right_hand_ring_pad_0_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. 0.00865"/>
-      <parent link="ring_link_1"/>
-      <child link="ring_sensor_0"/>
+      <parent link="right_hand_ring_1_link"/>
+      <child link="right_hand_ring_pad_0"/>
     </joint>
 
   
-    <link name="ring_sensor_1">
+    <link name="right_hand_ring_pad_1">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -1146,25 +1121,25 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_sensor_1" type="fixed">
+    <joint name="right_hand_ring_pad_1_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. 0.02485"/>
-      <parent link="ring_link_1"/>
-      <child link="ring_sensor_1"/>
+      <parent link="right_hand_ring_1_link"/>
+      <child link="right_hand_ring_pad_1"/>
     </joint>
 
   
-    <link name="ring_sensor_2">
+    <link name="right_hand_ring_pad_2">
       <collision>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
       </collision>
       <inertial>
@@ -1174,18 +1149,18 @@
       </inertial>
       <visual>
         <geometry>
-          <mesh filename="meshes/kistar/sensor.STL"/>
+          <mesh filename="01_kistar_hand_stl/pad.STL"/>
         </geometry>
-        <material name="Grey">
-          <color rgba="0.2 0.2 0.2 1"/>
+        <material name="Silicone">
+          <color rgba="0.980392 0.976471 0.964706 1"/>
         </material>
       </visual>
     </link>
 
-    <joint name="ring_sensor_2" type="fixed">
+    <joint name="right_hand_ring_pad_2_joint" type="fixed">
       <origin rpy="0. 0. 0." xyz="0.00525 0. -0.00865"/>
-      <parent link="ring_finger_motor"/>
-      <child link="ring_sensor_2"/>
+      <parent link="right_hand_ring_2_motor_link"/>
+      <child link="right_hand_ring_pad_2"/>
     </joint>
 
 </robot>
