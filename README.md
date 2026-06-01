@@ -1,13 +1,18 @@
 # KISTAR_URDF
 
+> **Mechanical CAD (STEP):** [**Sungwoo Park**](https://github.com/psw2939) (Korea University / KIST)  
+> **URDF / MJCF / STL conversion:** **Jaesung Lee** ([KIST](https://www.kist.re.kr))
+
 Open-source **URDF** and **MuJoCo MJCF** distribution of the KISTAR Hand family,
 developed at [Korea Institute of Science and Technology](https://www.kist.re.kr).
+Mesh geometry in this repository is derived from Sungwoo Park's mechanical CAD;
+STEP source files are not distributed here.
 
 This repository follows the structural convention of
 [KIST-PRIME-Lab/dex-urdf](https://github.com/KIST-PRIME-Lab/dex-urdf), so
 each robot lives under `robots/hands/<model_name>/` together with its meshes.
 
-> Maintainer / model author: **Jaesung Lee** &nbsp;·&nbsp; Copyright © 2026 Korea Institute of Science and Technology &nbsp;·&nbsp; License: **BSD-3-Clause**
+> Copyright © 2026 Korea Institute of Science and Technology &nbsp;·&nbsp; License: **BSD-3-Clause**
 
 ---
 
