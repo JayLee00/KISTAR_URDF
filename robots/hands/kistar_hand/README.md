@@ -13,6 +13,10 @@
 | Left URDF        | [`kistar_hand_left.urdf`](kistar_hand_left.urdf)            |
 | Right MJCF       | [`kistar_hand_right.xml`](kistar_hand_right.xml)            |
 | Left MJCF        | [`kistar_hand_left.xml`](kistar_hand_left.xml)              |
+| Right URDF (Franka bracket) | [`kistar_hand_right_with_franka_bracket.urdf`](kistar_hand_right_with_franka_bracket.urdf) |
+| Left URDF (Franka bracket)  | [`kistar_hand_left_with_franka_bracket.urdf`](kistar_hand_left_with_franka_bracket.urdf)   |
+| Right MJCF (Franka bracket) | [`kistar_hand_right_with_franka_bracket.xml`](kistar_hand_right_with_franka_bracket.xml)   |
+| Left MJCF (Franka bracket)  | [`kistar_hand_left_with_franka_bracket.xml`](kistar_hand_left_with_franka_bracket.xml)     |
 | Mesh format      | binary STL (`01_kistar_hand_stl/`)                          |
 
 ---
@@ -25,8 +29,15 @@ kistar_hand/
 ├── kistar_hand_left.urdf          # left URDF
 ├── kistar_hand_right.xml          # MuJoCo MJCF, recommended for sim
 ├── kistar_hand_left.xml
+├── kistar_hand_right_with_franka_bracket.urdf   # right URDF + Franka mount bracket
+├── kistar_hand_left_with_franka_bracket.urdf    # left URDF + Franka mount bracket
+├── kistar_hand_right_with_franka_bracket.xml    # MuJoCo MJCF (Franka bracket variant)
+├── kistar_hand_left_with_franka_bracket.xml
 ├── README.md
 └── 01_kistar_hand_stl/            # all binary STL meshes (left + right + shared)
+    ├── franka_bracket_round_link.STL
+    ├── right_hand_base_bracket_15deg_link.STL
+    └── left_hand_base_bracket_15deg_link.STL   # (+ existing hand meshes)
 ```
 
 ---
